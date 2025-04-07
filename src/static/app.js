@@ -25,6 +25,19 @@ document.addEventListener("DOMContentLoaded", () => {
           <p>${details.description}</p>
           <p><strong>Schedule:</strong> ${details.schedule}</p>
           <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
+          <div class="participants">
+            <h5>Participants:</h5>
+            <ul>
+              ${details.participants
+                .map((participant) => {
+                  // Ensure participant has both name and email properties
+                  const participantName = participant.name || "Unknown Name";
+                  const participantEmail = participant.email || "Unknown Email";
+                  return `<li>${participantName} (${participantEmail})</li>`;
+                })
+                .join("")}
+            </ul>
+          </div>
         `;
 
         activitiesList.appendChild(activityCard);
